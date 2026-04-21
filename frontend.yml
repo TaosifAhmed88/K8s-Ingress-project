@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend 
+  template:
+    metadata:
+      labels:
+        app: frontend 
+    spec:
+      containers:
+      - name: nginx
+        image: 510612307821.dkr.ecr.us-east-1.amazonaws.com/image2
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend 
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+  selector:
+    app: frontend 
