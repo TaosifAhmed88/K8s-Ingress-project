@@ -12,24 +12,24 @@ spec:
   - host: 510612307821.realhandsonlabs.net # Replace this with your desired domain name
     http:
       paths:
-      - path: /nginx
-        pathType: Prefix
-        backend:
-          service:
-            name: nginx
-            port:
-              number: 80
-      - path: /httpd
-        pathType: Prefix
-        backend:
-          service:
-            name: httpd
-            port:
-              number: 80
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: httpd
+            name: frontend
+            port:
+              number: 80
+      - path: /catalog
+        pathType: Prefix
+        backend:
+          service:
+            name: catalog
+            port:
+              number: 80
+      - path: /orders
+        pathType: Prefix
+        backend:
+          service:
+            name: orders
             port:
               number: 80
