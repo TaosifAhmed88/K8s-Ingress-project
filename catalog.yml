@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog  
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: catalog
+  template:
+    metadata:
+      labels:
+        app: catalog
+    spec:
+      containers:
+      - name: nginx
+        image: 510612307821.dkr.ecr.us-east-1.amazonaws.com/image1
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalog
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+  selector:
+    app: catalog
